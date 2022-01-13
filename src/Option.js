@@ -1,4 +1,4 @@
-const Option = ({el}) => {
+const Option = ({el,aprox}) => {
 
 
   return( <div className='options'>
@@ -6,6 +6,7 @@ const Option = ({el}) => {
     </h5>
     <div className='bar'>
       <p>Tiempo faltante: <b>{el}</b></p>
+      {!!aprox && <p>Tiempo estimado: <b>{aprox}</b></p>}
     </div>
   </div>
   )
