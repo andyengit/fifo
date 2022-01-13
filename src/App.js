@@ -47,7 +47,7 @@ function App() {
           <h3>Tareas FIFO</h3>
         </header>
         <div className='add'>
-          <input onChange={e => setinput(parseInt(e.target.value))} className='input' type="number" />
+          <input placeholder='Tiempo de Tarea' onChange={e => setinput(parseInt(e.target.value))} className='input' type="number" />
           <button onClick={addArray} className='button'>AGREGAR TAREA</button>
         </div>
         {!!array && <Option el={array} />}
