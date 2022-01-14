@@ -50,8 +50,8 @@ function App() {
           <input placeholder='Tiempo de Tarea' onChange={e => setinput(parseInt(e.target.value))} className='input' type="number" />
           <button onClick={addArray} className='button'>AGREGAR TAREA</button>
         </div>
-        {!!array && <Option el={array} />}
-        {(!!arrayWait && arrayWait.length > 0) && arrayWait.map((el, i) => <Option key={i} el={"En Espera"} aprox={el} />)}
+        {!!array && <Option el={array} i={"1"}/>}
+        {(!!arrayWait && arrayWait.length > 0) && arrayWait.map((el, i) => <Option key={i} el={"En Espera"} aprox={el} i={i+2} />)}
       </div>
     </div>
   );
