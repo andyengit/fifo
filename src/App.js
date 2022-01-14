@@ -7,14 +7,16 @@ function App() {
   const [array, setarray] = useState();
   const [arrayWait, setarrayWait] = useState([])
   const [input, setinput] = useState(null);
+  const [i , seti] = useState(0)
 
   const addArray = () => {
 
     if (input > 0) {
+      seti(i+1)
       if (array === undefined || array === null) {
-        setarray(parseInt(input));
+        setarray({i: i+1, time: parseInt(input)});
       } else {
-        setarrayWait([...arrayWait, parseInt(input)]);
+        setarrayWait([...arrayWait, {i: i+1, time: parseInt(input)}]);
       }
     }
   }
@@ -24,9 +26,9 @@ function App() {
 
     if (array !== undefined && array !== null) {
 
-      if (array > 0) {
+      if (array.time > 0) {
         const timerId = setTimeout(() => {
-          clearInterval(timerId); setarray(array - 1);
+          clearInterval(timerId); setarray({...array, time: array.time - 1});
         }, 1000);
       } else {
         if (arrayWait.length > 0) {
@@ -40,6 +42,9 @@ function App() {
 
   }, [array])
 
+  console.log(array)
+  console.log(arrayWait)
+
   return (
     <div className="App">
       <div className='cart'>
@@ -50,8 +55,8 @@ function App() {
           <input placeholder='Tiempo de Tarea' onChange={e => setinput(parseInt(e.target.value))} className='input' type="number" />
           <button onClick={addArray} className='button'>AGREGAR TAREA</button>
         </div>
-        {!!array && <Option el={array} i={"1"}/>}
-        {(!!arrayWait && arrayWait.length > 0) && arrayWait.map((el, i) => <Option key={i} el={"En Espera"} aprox={el} i={i+2} />)}
+        {!!array && <Option el={array.time} i={array.i}/>}
+        {(!!arrayWait && arrayWait.length > 0) && arrayWait.map((el, i) => <Option key={i} el={"En Espera"} aprox={el.time} i={el.i} />)}
       </div>
     </div>
   );
